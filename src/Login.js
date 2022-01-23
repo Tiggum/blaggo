@@ -1,0 +1,24 @@
+import { useNavigate } from "react-router-dom"
+import useAuth from './useAuth'
+
+const Login = () => {
+    const navigate = useNavigate()
+    const { login } = useAuth()
+
+    const handleLogin = () => {
+        login().then(() => {
+            navigate('/')
+        })
+    }
+
+    return (
+        <div>
+            <h1>Login</h1>
+            <button onClick={handleLogin}>
+                Log in
+            </button>
+        </div>
+    )
+}
+
+export default Login
