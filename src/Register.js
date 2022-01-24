@@ -32,7 +32,7 @@ const Register = () => {
         } else {
             axios({
                 method: 'post',
-                url: '/api/user/register',
+                url: 'https://blaggo-backend.herokuapp.com/api/user/register',
                 headers: {
                   'Content-Type': ' application/json'
                 },

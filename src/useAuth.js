@@ -19,7 +19,7 @@ const useAuth = () => {
                   
                   var config = {
                     method: 'post',
-                    url: '/api/user/login',
+                    url: 'https://blaggo-backend.herokuapp.com/api/user/login',
                     headers: { 
                       'Content-Type': 'application/json', 
                     },

@@ -12,9 +12,9 @@ const Column = ({userid}) => {
         console.log(userid)
 
         if (userid !== undefined) {
-            axios.get(`/api/post?userid=${userid}`).then(res => setPosts(res.data))
+            axios.get(`https://blaggo-backend.herokuapp.com/api/post?userid=${userid}`).then(res => setPosts(res.data))
         } else {
-            axios.get(`/api/post`).then(res => setPosts(res.data))
+            axios.get(`https://blaggo-backend.herokuapp.com/api/post`).then(res => setPosts(res.data))
         }
 
          

@@ -21,7 +21,7 @@ const ViewPost = () => {
 
     const getPost = async () => {
 
-        await axios.get(`/api/post/${id}`, { withCredentials: true })
+        await axios.get(`https://blaggo-backend.herokuapp.com/api/post/${id}`, { withCredentials: true })
             .then(res => {
                 setTitle(res.data[0].title)
                 setContent(res.data[0].content)
@@ -39,7 +39,7 @@ const ViewPost = () => {
     const handleDelete = () => {
         axios({
             method: 'delete',
-            url: '/api/post',
+            url: 'https://blaggo-backend.herokuapp.com/api/post',
             data: {
                 id: id,
                 userid: cookies.userid
@@ -53,7 +53,7 @@ const ViewPost = () => {
     const handlePatch = () => {
         axios({
             method: 'patch',
-            url: '/api/post',
+            url: 'https://blaggo-backend.herokuapp.com/api/post',
             data: {
                 id: id,
                 title: title,

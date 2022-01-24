@@ -24,7 +24,7 @@ const NewPost = () => {
               
               var config = {
                 method: 'post',
-                url: '/api/post',
+                url: 'https://blaggo-backend.herokuapp.com/api/post',
                 headers: { 
                   'Content-Type': 'application/json', 
                 },
