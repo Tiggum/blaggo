@@ -25,7 +25,8 @@ const NewPost = () => {
                 headers: { 
                   'Content-Type': 'application/json', 
                 },
-                data : data
+                data : data, 
+                withCredentials: true
               };
               
               axios(config)
