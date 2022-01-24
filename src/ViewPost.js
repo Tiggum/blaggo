@@ -3,11 +3,15 @@ import { Button, TextField } from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios  from 'axios'
 import Typography from '@mui/material/Typography';
+import useAuth from './useAuth'
+import { useCookies } from 'react-cookie';
 
 
 const ViewPost = () => {
     const {id} = useParams()
     const navigate = useNavigate()
+    const [cookies] = useCookies();
+    const {authed} = useAuth()
 
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
@@ -20,7 +24,6 @@ const ViewPost = () => {
             .then(res => {
                 setTitle(res.data[0].title)
                 setContent(res.data[0].content)
-                
             })
     }
 
@@ -43,6 +46,8 @@ const ViewPost = () => {
             id: id,
             title: title,
             content: content
+        }).then(() => {
+            navigate('/')
         })
     }
 
@@ -83,9 +88,9 @@ const ViewPost = () => {
             {edit && <Button onClick={handlePatch}>
                 Submit
             </Button>}
-            <Button onClick={e => setEdit(!edit)}>
+            { authed  && <Button onClick={e => setEdit(!edit)}>
                 Edit
-            </Button>
+            </Button>}
             <Button onClick={handleDelete}>
                 Delete
             </Button>
