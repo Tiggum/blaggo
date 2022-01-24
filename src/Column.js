@@ -9,12 +9,12 @@ const Column = ({userid}) => {
 
 
     useEffect(() => {
-
+        console.log(userid)
 
         if (userid !== undefined) {
-            axios.get(`http://localhost:9001/post?userid=${userid}`).then(res => setPosts(res.data))
+            axios.get(`/api/post?userid=${userid}`).then(res => setPosts(res.data))
         } else {
-            axios.get(`http://localhost:9001/post`).then(res => setPosts(res.data))
+            axios.get(`/api/post`).then(res => setPosts(res.data))
         }
 
          

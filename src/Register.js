@@ -32,7 +32,7 @@ const Register = () => {
         } else {
             axios({
                 method: 'post',
-                url: 'http://localhost:9001/user/register',
+                url: '/api/user/register',
                 headers: {
                   'Content-Type': ' application/json'
                 },

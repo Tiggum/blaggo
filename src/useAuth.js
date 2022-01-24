@@ -19,7 +19,7 @@ const useAuth = () => {
                   
                   var config = {
                     method: 'post',
-                    url: 'http://localhost:9001/user/login',
+                    url: '/api/user/login',
                     headers: { 
                       'Content-Type': 'application/json', 
                     },

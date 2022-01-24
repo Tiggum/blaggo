@@ -21,7 +21,7 @@ const NewPost = () => {
               
               var config = {
                 method: 'post',
-                url: 'http://localhost:9001/post',
+                url: '/api/post',
                 headers: { 
                   'Content-Type': 'application/json', 
                 },
