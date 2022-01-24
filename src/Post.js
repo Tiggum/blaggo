@@ -6,6 +6,11 @@ import { Button, CardActions } from '@mui/material';
 
 const Post = ({ userid, content, title, creationtime}) => {
 
+    let str = content
+
+    if (content.length > 100) {
+        str = content.slice(0, 100) + '...'
+    }
 
     return (
 <Card variant="outlined" sx={{ m: 1, flexGrow: 1, display: 'flex' }}>
@@ -17,7 +22,7 @@ const Post = ({ userid, content, title, creationtime}) => {
         {creationtime}
       </Typography>
       <Typography variant="body2">
-        {content}
+        {str}
       </Typography>
     </CardContent>
     <CardActions>
