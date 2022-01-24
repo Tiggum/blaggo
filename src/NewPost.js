@@ -21,7 +21,7 @@ const NewPost = () => {
               
               var config = {
                 method: 'post',
-                url: 'https://blaggo-backend.herokuapp.com/post',
+                url: 'http://localhost:9001/post',
                 headers: { 
                   'Content-Type': 'application/json', 
                 },

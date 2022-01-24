@@ -6,6 +6,7 @@ import Home from './Home'
 import Register from './Register'
 import User from './User'
 import NewPost from './NewPost'
+import ViewPost from './ViewPost'
 
 const App = () => {
   
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/user" element={<User />} />
         <Route path="/newpost" element={<NewPost />}/>
+        <Route path="/viewpost/:id" element={<ViewPost />} />
       </Routes>
 
       

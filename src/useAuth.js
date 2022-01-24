@@ -7,10 +7,11 @@ const useAuth = () => {
     const [authed, setAuthed] = React.useState(false)
 
     return {
-        authed, 
+        authed,
         login(username, password) {
-             
+
             return new Promise(res => {
+
                 let data = {
                     "username": username,
                     "password": password
@@ -18,7 +19,7 @@ const useAuth = () => {
                   
                   var config = {
                     method: 'post',
-                    url: 'https://blaggo-backend.herokuapp.com/user/login',
+                    url: 'http://localhost:9001/user/login',
                     headers: { 
                       'Content-Type': 'application/json', 
                     },
@@ -35,8 +36,10 @@ const useAuth = () => {
                     console.log(error);
                   })
                   res()
+
+
             })
-            
+
         },
         logout() {
             return new Promise((res) => {
@@ -47,7 +50,7 @@ const useAuth = () => {
     }
 }
 
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
     const auth = useAuth()
 
     return (
@@ -55,7 +58,7 @@ export const AuthProvider = ({children}) => {
             {children}
         </authContext.Provider>
     )
-} 
+}
 
 const AuthConsumer = () => {
     return React.useContext(authContext)

@@ -2,9 +2,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Button, CardActions } from '@mui/material';
+import { Link } from 'react-router-dom'
 
 
-const Post = ({ userid, content, title, creationtime}) => {
+const Post = ({ userid, content, title, creationtime, id}) => {
 
     let str = content
 
@@ -21,12 +22,15 @@ const Post = ({ userid, content, title, creationtime}) => {
       <Typography sx={{ mb: 1.5 }} color="text.secondary">
         {creationtime}
       </Typography>
+      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        {userid}
+      </Typography>
       <Typography variant="body2">
         {str}
       </Typography>
     </CardContent>
     <CardActions>
-      <Button size="small">View</Button>
+      <Link to={`/viewpost/${id}`} >View</Link>
     </CardActions>
     </Card>
     )

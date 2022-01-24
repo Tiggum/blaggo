@@ -12,16 +12,16 @@ const Column = ({userid}) => {
 
 
         if (userid !== undefined) {
-            axios.get(`https://blaggo-backend.herokuapp.com/post?userid=${userid}`).then(res => setPosts(res.data))
+            axios.get(`http://localhost:9001/post?userid=${userid}`).then(res => setPosts(res.data))
         } else {
-            axios.get(`https://blaggo-backend.herokuapp.com/post`).then(res => setPosts(res.data))
+            axios.get(`http://localhost:9001/post`).then(res => setPosts(res.data))
         }
 
          
     }, [])
 
     useEffect(() => {
-        setList(posts.map((post) => <Post title={post.title} content={post.content} userid={post.userid} creationtime={post.creationtime}/>))
+        setList(posts.map((post) => <Post title={post.title} content={post.content} userid={post.userid} creationtime={post.creationtime} id={post.id}/>))
     }, [posts])
 
     

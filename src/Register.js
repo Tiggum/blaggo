@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom"
-import useAuth from './useAuth'
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -12,7 +11,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { useState } from 'react'
+import axios from "axios";
 
 const theme = createTheme();
 
@@ -20,8 +20,33 @@ const theme = createTheme();
 const Register = () => {
     const navigate = useNavigate()
 
-    const handleRegister = () => {
+    const [firstname, setFirstname] = useState('')
+    const [lastname, setLastname] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [taken, setTaken] = useState(false)
 
+    const handleRegister = () => {
+        if ( firstname === '' || lastname === '' || username === '' || password === ''){
+
+        } else {
+            axios({
+                method: 'post',
+                url: 'http://localhost:9001/user/register',
+                headers: {
+                  'Content-Type': ' application/json'
+                },
+                data: {
+                  'username': username,
+                  'password': password,
+                  'firstname': firstname,
+                  'lastname': lastname
+                }
+              }).then(() => {
+     
+                    navigate('/login')
+              }).catch(() => setTaken(true))
+        }
     }
 
     return (
@@ -42,7 +67,10 @@ const Register = () => {
                     <Typography component="h1" variant="h5">
                         Register
                     </Typography>
-                    <Box component="form" onSubmit={handleRegister} noValidate sx={{ mt: 1 }}>
+                    <Box sx={{ mt: 1 }}>
+                        { taken && <Typography component="h1" variant="h5">
+                        Username taken try again
+                    </Typography>}
                         <TextField
                             margin="normal"
                             required
@@ -52,6 +80,7 @@ const Register = () => {
                             name="username"
                             autoComplete="username"
                             autoFocus
+                            onBlur={e => setUsername(e.target.value)}
                         />
                         <TextField
                             margin="normal"
@@ -62,6 +91,8 @@ const Register = () => {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            onBlur={e => setPassword(e.target.value)}
+
                         />
                         <TextField
                             margin="normal"
@@ -72,6 +103,8 @@ const Register = () => {
                             type="firstname"
                             id="firstname"
                             autoComplete="firstname"
+                            onBlur={e => setFirstname(e.target.value)}
+
                         />
                         <TextField
                             margin="normal"
@@ -82,13 +115,15 @@ const Register = () => {
                             type="lastname"
                             id="lastname"
                             autoComplete="lastname"
+                            onBlur={e => setLastname(e.target.value)}
+
                         />
 
                         <Button
-                            type="submit"
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
+                            onClick={handleRegister}
                         >
                             Register
                         </Button>
