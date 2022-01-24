@@ -20,7 +20,7 @@ const ViewPost = () => {
 
     const getPost = async () => {
         
-        await axios.get(`http://localhost:9001/post/${id}`, {})
+        await axios.get(`http://localhost:9001/post/${id}`, {withCredentials: true})
             .then(res => {
                 setTitle(res.data[0].title)
                 setContent(res.data[0].content)
@@ -34,8 +34,9 @@ const ViewPost = () => {
 
     const handleDelete = () => {
         axios.delete(`http://localhost:9001/post/`, {
-            id: id
-        })
+            id: id,
+            userid: cookies.userid
+        }, {withCredentials: true})
             .then(() =>
                 navigate('/')
             )
@@ -45,8 +46,9 @@ const ViewPost = () => {
         axios.patch(`http://localhost:9001/post/`, {
             id: id,
             title: title,
-            content: content
-        }).then(() => {
+            content: content,
+            userid: cookies.userid
+        }, {withCredentials: true}).then(() => {
             navigate('/')
         })
     }
