@@ -2,9 +2,11 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import { TextField, Button } from '@mui/material'
+import { useCookies } from 'react-cookie'
 
 const NewPost = () => {
     const navigate = useNavigate()
+    const [cookies] = useCookies()
 
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
@@ -16,7 +18,8 @@ const NewPost = () => {
 
             var data = JSON.stringify({
                 "title": title,
-                "content": content
+                "content": content,
+                "userid": cookies.userid
               });
               
               var config = {
