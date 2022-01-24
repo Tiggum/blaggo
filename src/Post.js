@@ -8,7 +8,7 @@ const Post = ({ userid, content, title, creationtime}) => {
 
 
     return (
-<Card variant="outlined" sx={{ maxWidth: 345 }}>
+<Card variant="outlined" sx={{ m: 1, flexGrow: 1, display: 'flex' }}>
 <CardContent>
       <Typography variant="h5" component="div">
         {title}

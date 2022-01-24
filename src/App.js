@@ -2,27 +2,26 @@ import {Link, Routes, Route} from 'react-router-dom'
 import Nav from './Nav'
 import RequireAuth from './RequireAuth'
 import Login from './Login'
-import Post from './Post'
-
-const Home = () => <h1>Home(Public)</h1>
-const Profile = () => <h1>Profile(Private)</h1>
-
+import Home from './Home'
+import Register from './Register'
+import User from './User'
+import NewPost from './NewPost'
 
 const App = () => {
   
   
   return (
     <div>
-      <Post userid='1' title='First' content='first post' creationtime='today'/>
+      <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/profile" element={
-        <RequireAuth>
-          <Profile />
-        </RequireAuth>
-        } />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/user" element={<User />} />
+        <Route path="/newpost" element={<NewPost />}/>
       </Routes>
+
+      
     </div>
   );
 }

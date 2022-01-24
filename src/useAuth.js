@@ -1,4 +1,5 @@
 import * as React from "react";
+import axios from 'axios'
 
 const authContext = React.createContext()
 
@@ -7,11 +8,35 @@ const useAuth = () => {
 
     return {
         authed, 
-        login() {
-            return new Promise((res) => {
-                setAuthed(true)
-                res()
+        login(username, password) {
+             
+            return new Promise(res => {
+                let data = {
+                    "username": username,
+                    "password": password
+                  }
+                  
+                  var config = {
+                    method: 'post',
+                    url: 'https://blaggo-backend.herokuapp.com/user/login',
+                    headers: { 
+                      'Content-Type': 'application/json', 
+                    },
+                    data : data
+                  };
+                  
+                  axios(config)
+                  .then(res => {
+                      if (res.data.status === 200) {
+                          setAuthed(true)
+                      }
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  })
+                  res()
             })
+            
         },
         logout() {
             return new Promise((res) => {
